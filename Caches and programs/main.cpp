@@ -5,17 +5,18 @@
 #include <cmath>
 #include <vector>
 
-#define MAX 50000
+#define MAX 5000
 using namespace std;
+unsigned t0, t1;
 
 // Definicion de Matrices
-vector<vector<int>> A(MAX, vector<int>(MAX, 0));
-vector<int> B(MAX);
-vector<int> C(MAX);
+vector<vector<double>> A(MAX, vector<double>(MAX,0)); /// MAX cantidad de elementos de tipo vector<MAX> y rellenado con 0's
+vector<double> B(MAX);
+vector<double> C(MAX);
 
 
 // LLenar las matrices
-void init(){
+void llenado(){
     for (int i = 0; i < MAX; i++){
         for (int j = 0; j < MAX; j++){
              A[i][j] = rand() % 1000;
@@ -50,23 +51,17 @@ void mutiJI(){
 
 int main(){
     
-  init();
+  llenado();
 
-  srand(time(0));
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
-  start = std::chrono::high_resolution_clock::now();
+  t0=clock();
  
   multiIJ();
-   // mutiJI();
+  //mutiJI();
     
+  t1=clock();
     
- end = std::chrono::high_resolution_clock::now();
- int64_t duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end-start).count();
- cout<<"Time -> "<< duration <<" ns"<< endl;
+  double time = (double(t1-t0)/CLOCKS_PER_SEC);
+  cout << "Tiempo de ejecucion -> " << time << endl;
     
- 
-
     
 }
